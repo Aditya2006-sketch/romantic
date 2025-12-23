@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+    overflow: hidden;
+}
+.page {
+    display: none;
+    height: 100vh;
+    text-align: center;
+    color: white;
+    padding-top: 25vh;
+}
+.page.active {
+    display: block;
+}
+input {
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    width: 220px;
+    font-size: 16px;
+}
+button {
+    margin-top: 30px;
+    padding: 12px 35px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    background: #ff4d6d;
+    color: white;
+    cursor: pointer;
+}
+button:hover {
+    background: #ff1e50;
+}
+h1 {
+    font-size: 42px;
+}
+.rose {
+    position: absolute;
+    font-size: 30px;
+    animation: fall linear infinite;
+}
+@keyframes fall {
+    0% { transform: translateY(-100px); }
+    100% { transform: translateY(110vh); }
+}
+.heart {
+    font-size: 80px;
+    animation: beat 1s infinite;
+}
+@keyframes beat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+</style>
+</head>
+<body>
+
+<!-- Page 1 -->
+<div class="page active">
+    <h1>Enter Your Name 💕</h1>
+    <input id="username" placeholder="Your Name">
+    <br>
+    <button onclick="nextPage()">Next</button>
+</div>
+
+<!-- Page 2 -->
+<div class="page">
+    <h1>I liked you so much ❤️</h1>
+    <button onclick="nextPage()">Next</button>
+</div>
+
+<!-- Page 3 -->
+<div class="page">
+    <h1>Just for you 🌹</h1>
+    <button onclick="nextPage()">Next</button>
+</div>
+
+<!-- Page 4 -->
+<div class="page">
+    <h1>You are the reason<br>my heart smiles 💖</h1>
+    <button onclick="nextPage()">Next</button>
+</div>
+
+<!-- Page 5 -->
+<div class="page">
+    <h1>Every moment with you<br>feels special ✨</h1>
+    <button onclick="nextPage()">Next</button>
+</div>
+
+<!-- Page 6 -->
+<div class="page">
+    <div class="heart">❤️</div>
+    <button onclick="nextPage()">Next</button>
+</div>
+
+<!-- Page 7 -->
+<div class="page">
+    <h1>I never planned this…<br>but my heart chose you 🥰</h1>
+    <button onclick="nextPage()">Next</button>
+</div>
+
+<!-- Page 8 -->
+<div class="page">
+    <h1>Maybe I’m not perfect…<br>but my feelings are true 🌙</h1>
+    <button onclick="nextPage()">Next</button>
+</div>
+
+<!-- Page 9 -->
+<div class="page">
+    <h1 id="finalMsg"></h1>
+</div>
+
+<script>
+let current = 0;
+const pages = document.querySelectorAll('.page');
+
+function nextPage() {
+    pages[current].classList.remove('active');
+    current++;
+    pages[current].classList.add('active');
+
+    if (current === 2) createRoses();
+    if (current === 8) {
+        let name = document.getElementById("username").value || "Someone Special";
+        document.getElementById("finalMsg").innerHTML =
+            name + ", I really like you ❤️";
+    }
+}
+
+function createRoses() {
+    for (let i = 0; i < 25; i++) {
+        let rose = document.createElement("div");
+        rose.innerHTML = "🌹";
+        rose.className = "rose";
+        rose.style.left = Math.random() * 100 + "vw";
+        rose.style.animationDuration = (3 + Math.random() * 3) + "s";
+        document.body.appendChild(rose);
+    }
+}
+</script>
+
+</body>
+</html>
